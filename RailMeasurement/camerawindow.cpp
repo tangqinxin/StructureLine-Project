@@ -134,7 +134,7 @@ void CameraWindow::GeoSetWidgetSampleImg(int _x,int _y, int _width,int _height)
 //设置参数框
 void CameraWindow::GeoSetFrameParamsSet(int _x,int _y,int _width, int _height,int _dx,int _dy)
 {
-
+/*
     ui->frame_ParmsSet->move(_x,_y);
     ui->frame_ParmsSet->resize(_width,_height);
 
@@ -150,6 +150,7 @@ void CameraWindow::GeoSetFrameParamsSet(int _x,int _y,int _width, int _height,in
 
     ui->pushButton_ParamsSet->move(3*_dx+CwParas.LabelWidth+CwParas.LabelWidth,2*_dy+CwParas.LabelHeight);//框内第二行第三列
     ui->pushButton_ParamsSet->resize(CwParas.LineeditWidth,CwParas.LineeditHeight);
+*/
 }
 
 //设置操作框
@@ -435,6 +436,7 @@ void CameraWindow::on_pushButton_SetBaseLine_clicked()
 {
     vector<Point2f> BLineCenterImgPts=StegerLine(CurImgMat);//对当前图片提取中心条纹
     LPlane.SetBaseLine(CameraIntrinsic,BLineCenterImgPts);//利用内参结合中心条纹设定基准线
+    LPlane.SaveBaseLineParams();//设置基准线的时候，自动保存基准线信息
 }
 
 // 当前参数显示
@@ -541,4 +543,33 @@ void CameraWindow::on_pushButton_TestGetSingleImg_Take_clicked()
     this->ShowCurImgInLabel(LabelSingleImg,CurImgMat);
     ObjFeatureControlPtr->GetCommandFeature("AcquisitionStop")->Execute();
     ObjStreamPtr->StopGrab();
+}
+
+//仅仅保存基线信息
+void CameraWindow::on_pushButton_OutputBaseLine_clicked()
+{
+    LPlane.SaveBaseLineParams();
+}
+
+//读取基线信息
+void CameraWindow::on_pushButton_ReadBaseLineInfo_clicked()
+{
+    //下面是基线信息
+    std::string PlaneInfoFilePath=".\\PlaneCalibrate\\";
+    std::fstream PlaneBaseLineStream;
+
+    std::string BaseLineFileName="BaseLineInfo.txt";
+
+    PlaneBaseLineStream.open(PlaneInfoFilePath+BaseLineFileName);
+
+    //定义变量
+    double m_kx,m_ky,m_kz;//平面系数a0,a1,a2
+    Point3f ReadPassPt;
+
+    //读取参数
+    PlaneBaseLineStream>>m_kx>>m_ky>>m_kz>>ReadPassPt.x>>ReadPassPt.y>>ReadPassPt.z;
+
+    //设置参数
+    LPlane.SetBaseLineParams(m_kx,m_ky,m_kz,ReadPassPt);
+    QMessageBox::information(this,"Information","Read BaseLine Parameters Complete!");
 }

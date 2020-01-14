@@ -1,6 +1,6 @@
 PlaneParams:
-baseline:kx: 0.841287 ky: 0.0107824 kz: 0.540481
-baseline:Passpt: [-649.082, -31.5933, 0]
+baseline:kx: 0.82271 ky: -0.0249615 kz: 0.567913
+baseline:Passpt: [-592.895, 1.68372, 0]
 Plane Coeffs:
 a0: 0.656655 a1: -1.10874 a2: 391.194
 M:

@@ -158,6 +158,10 @@ private slots:
 
     void on_pushButton_TestGetSingleImg_Take_clicked();
 
+    void on_pushButton_OutputBaseLine_clicked();
+
+    void on_pushButton_ReadBaseLineInfo_clicked();
+
 private:
     Ui::CameraWindow *ui;
     CameraWindowGeoParams CwParas;

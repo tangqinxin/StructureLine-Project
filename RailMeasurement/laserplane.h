@@ -48,6 +48,7 @@ public:
     void SavePlaneParams();//保存激光平面参数
     void SetPCoeffs(double m_a0,double m_a1,double m_a2);//人为设定平面参数
     void SendPlaneParams(float& _kx,float& _ky,float& _kz,Point3f& m_pt,double& _a0,double& _a1,double& _a2);//向外界传递平面参数
+    void SaveBaseLineParams();//保存基线信息
 };
 
 #endif // LASERPLANE_H

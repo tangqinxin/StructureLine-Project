@@ -38,6 +38,8 @@ public:
     QPushButton *pushButton_ParamsSet;
     QPushButton *pushButton_ShiftToMainWindow;
     QPushButton *pushButton_TestGetSingleImg_Take;
+    QPushButton *pushButton_OutputBaseLine;
+    QPushButton *pushButton_ReadBaseLineInfo;
     QFrame *frame_CamOperate;
     QPushButton *pushButton_OpenCam;
     QPushButton *pushButton_StartGrab;
@@ -96,7 +98,7 @@ public:
         label_SampleImg->setGeometry(QRect(0, 0, 800, 800));
         frame_ParmsSet = new QFrame(CameraWindow);
         frame_ParmsSet->setObjectName(QStringLiteral("frame_ParmsSet"));
-        frame_ParmsSet->setGeometry(QRect(100, 910, 500, 100));
+        frame_ParmsSet->setGeometry(QRect(100, 910, 800, 100));
         frame_ParmsSet->setFrameShape(QFrame::StyledPanel);
         frame_ParmsSet->setFrameShadow(QFrame::Raised);
         label_ExplosureTime = new QLabel(frame_ParmsSet);
@@ -120,6 +122,12 @@ public:
         pushButton_TestGetSingleImg_Take = new QPushButton(frame_ParmsSet);
         pushButton_TestGetSingleImg_Take->setObjectName(QStringLiteral("pushButton_TestGetSingleImg_Take"));
         pushButton_TestGetSingleImg_Take->setGeometry(QRect(230, 10, 100, 30));
+        pushButton_OutputBaseLine = new QPushButton(frame_ParmsSet);
+        pushButton_OutputBaseLine->setObjectName(QStringLiteral("pushButton_OutputBaseLine"));
+        pushButton_OutputBaseLine->setGeometry(QRect(340, 10, 100, 30));
+        pushButton_ReadBaseLineInfo = new QPushButton(frame_ParmsSet);
+        pushButton_ReadBaseLineInfo->setObjectName(QStringLiteral("pushButton_ReadBaseLineInfo"));
+        pushButton_ReadBaseLineInfo->setGeometry(QRect(450, 50, 100, 30));
         frame_CamOperate = new QFrame(CameraWindow);
         frame_CamOperate->setObjectName(QStringLiteral("frame_CamOperate"));
         frame_CamOperate->setGeometry(QRect(1000, 910, 800, 100));
@@ -248,6 +256,8 @@ public:
         pushButton_ParamsSet->setText(QApplication::translate("CameraWindow", "\350\256\276\347\275\256\345\217\202\346\225\260", Q_NULLPTR));
         pushButton_ShiftToMainWindow->setText(QApplication::translate("CameraWindow", "\345\210\207\346\215\242\345\210\260\344\270\273\347\225\214\351\235\242", Q_NULLPTR));
         pushButton_TestGetSingleImg_Take->setText(QApplication::translate("CameraWindow", "\351\207\207\345\215\225\345\270\247", Q_NULLPTR));
+        pushButton_OutputBaseLine->setText(QApplication::translate("CameraWindow", "\350\276\223\345\207\272\345\237\272\347\272\277\344\277\241\346\201\257", Q_NULLPTR));
+        pushButton_ReadBaseLineInfo->setText(QApplication::translate("CameraWindow", "\350\257\273\345\217\226\345\237\272\347\272\277\344\277\241\346\201\257", Q_NULLPTR));
         pushButton_OpenCam->setText(QApplication::translate("CameraWindow", "\346\211\223\345\274\200\347\233\270\346\234\272", Q_NULLPTR));
         pushButton_StartGrab->setText(QApplication::translate("CameraWindow", "\345\274\200\345\247\213\351\207\207\351\233\206", Q_NULLPTR));
         pushButton_StopGrab->setText(QApplication::translate("CameraWindow", "\345\201\234\346\255\242\351\207\207\351\233\206", Q_NULLPTR));

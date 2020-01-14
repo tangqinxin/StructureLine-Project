@@ -270,3 +270,23 @@ void LaserPlane::SendPlaneParams(float &_kx, float &_ky, float &_kz, Point3f &m_
     _a1=PCoeffs.a1;
     _a2=PCoeffs.a2;
 }
+
+//保存基线信息
+void LaserPlane::SaveBaseLineParams(){
+    std::string FilePath = ".\\PlaneCalibrate";
+    MakeMyDirectory(FilePath);
+
+    std::string FileName2 = FilePath + "\\" +"BaseLineInfo.txt";//保存基线参数kx，ky，kz，PassPt
+
+    std::fstream PlaneBaseLineStream;
+
+    PlaneBaseLineStream.open(FileName2,ios::out | ios::trunc);
+    PlaneBaseLineStream.close();
+
+    PlaneBaseLineStream.open(FileName2,ios::app);
+
+    PlaneBaseLineStream << BaseLine.kx << std::endl;
+    PlaneBaseLineStream << BaseLine.ky << std::endl;
+    PlaneBaseLineStream << BaseLine.kz << std::endl;
+    PlaneBaseLineStream << BaseLine.PassPt.x << " " << BaseLine.PassPt.y << " " << BaseLine.PassPt.z << std::endl;
+}

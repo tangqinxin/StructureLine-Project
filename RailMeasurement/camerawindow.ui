@@ -76,7 +76,7 @@
     <rect>
      <x>100</x>
      <y>910</y>
-     <width>500</width>
+     <width>800</width>
      <height>100</height>
     </rect>
    </property>
@@ -169,6 +169,32 @@
     </property>
     <property name="text">
      <string>采单帧</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_OutputBaseLine">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>输出基线信息</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_ReadBaseLineInfo">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>50</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>读取基线信息</string>
     </property>
    </widget>
   </widget>
