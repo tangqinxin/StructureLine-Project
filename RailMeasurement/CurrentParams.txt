@@ -1,0 +1,11 @@
+PlaneParams:
+baseline:kx: 0 ky: 0 kz: 1
+baseline:Passpt: [0, 0, 0]
+Plane Coeffs:
+a0: 0 a1: 0 a2: 0
+M:
+[0, 0, 0;
+  0, 0, 0;
+  0, 0, 0]
+discoeffs
+[0, 0, 0, 0, 0]
