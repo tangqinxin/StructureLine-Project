@@ -22,6 +22,7 @@ CameraWindow::CameraWindow(QWidget *parent) :
   ,CalibPhotoNums(0)
   ,m_bSetBaseLine(false)
   ,m_bMeasureOk(false)
+  ,m_bUnDistort(false)
 {
     ui->setupUi(this);
     LabelShowCurImg=ui->label_CurInput;
@@ -339,6 +340,7 @@ void CameraWindow::ShowCurImgInLabel(QLabel *ptrLabelToShow, cv::Mat &CVMat)
 */
 
 //相机一键标定
+//该函数仅仅输出相机内参标定结果，并不改变当前测量的参数，还需要人为的读取参数
 void CameraWindow::on_pushButton_CalibCam_clicked()
 {
     std::string CalibFileTxtName=ui->lineEdit_CalibrateData->text().toStdString();
@@ -360,6 +362,7 @@ void CameraWindow::on_pushButton_ReadCalibParms_clicked()
     std::string DisCoeffsFileName="distCoeffs.txt";
     ReadMatFromFileName(CamIntrinsicFilePath+CamMFileName,CameraIntrinsic,1);//读取内参矩阵
     ReadMatFromFileName(CamIntrinsicFilePath+DisCoeffsFileName,DisCoeffs,1);//读取畸变系数
+    m_bUnDistort=true;//可以进行畸变矫正
 
     //下面是激光平面信息
     std::string PlaneInfoFilePath=".\\PlaneCalibrate\\";
@@ -389,6 +392,7 @@ void CameraWindow::on_pushButton_ClearCalibParms_clicked()
     LPlane.CleanCoeffs();
     CameraIntrinsic=Mat::zeros(3,3,CV_32FC1);
     DisCoeffs=Mat::zeros(1,5,CV_32FC1);
+    m_bUnDistort=false;//不再进行畸变矫正
 }
 
 //激光平面标定
@@ -399,6 +403,7 @@ void CameraWindow::on_pushButton_PlaneFit_clicked()
     ReadFileNameFromTxt(CalibPlaneFileTxtName,PhotoDataArray);//获取暗场照片数据
     vector<Point2f> CenterLinePtsPerImg;//中心条纹图像坐标
     ReadMatFromFileName(".\\CameraCalibrate\\CamIntrinsicMat.txt",CameraIntrinsic,1);//读取内参
+    ReadMatFromFileName(".\\CameraCalibrate\\distCoeffs.txt",DisCoeffs,1);//畸变系数
     Mat RotMati=Mat::zeros(3,3,CV_32FC1);//第i张图旋转矩阵
     Mat TranslationVeci=Mat::zeros(3,1,CV_32FC1);//第i张图平移矩阵
     vector<Point3f> PtsInWPerImg;//每张图片的世界坐标系坐标
@@ -408,7 +413,8 @@ void CameraWindow::on_pushButton_PlaneFit_clicked()
 
     //对每张图片提取中心条纹
     for(int i=0;i<PhotoDataArray.size();i++){
-        Mat CalibPlaneSrcImg=imread(PhotoDataArray[i],IMREAD_GRAYSCALE);
+        Mat CalibPlaneSrcImg=imread(PhotoDataArray[i],IMREAD_GRAYSCALE);//读取图片
+
         CenterLinePtsPerImg=StegerLine(CalibPlaneSrcImg);//提取中心线
         ReadMatFromFileName(".\\CameraCalibrate\\RMat.txt",RotMati,i);//读取对应的R
         ReadMatFromFileName(".\\CameraCalibrate\\tvec.txt",TranslationVeci,i);//读取对应的t
@@ -536,7 +542,9 @@ void CameraWindow::on_pushButton_TestGetSingleImg_Take_clicked()
       void* pRaw8Buffer = NULL;
       pRaw8Buffer = objImageDataPtr->ConvertToRaw8(GX_BIT_0_7);
       memcpy(this->CurImgMat.data, pRaw8Buffer, (objImageDataPtr->GetHeight())*(objImageDataPtr->GetWidth()));
-      //cv::flip(CurImgMat, CurImgMat, 0);//大恒的图像要进行翻转
+      if(m_bUnDistort==true){
+
+      }
     }
     //采集完之后要显示
 

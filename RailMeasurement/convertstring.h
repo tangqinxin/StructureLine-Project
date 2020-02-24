@@ -17,4 +17,7 @@ bool MakeMyDirectory(const std::string& strFilePathDirctory);
 //从FileName文件中读取获得图像的地址DataArray
 void ReadFileNameFromTxt(std::string FileName,std::vector<std::string>& DataArray);
 
+//从FileName的txt文件中读取x,y数据,并用于读入数据并在Mainwindow中画出结果
+void ReadDataFromTxt(std::string Filename, std::vector<double>& x, std::vector<double>& y);
+
 #endif // CONVERTSTRING_H

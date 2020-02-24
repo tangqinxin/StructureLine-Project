@@ -21,3 +21,12 @@ void ReadFileNameFromTxt(std::string FileName,std::vector<std::string> &DataArra
         DataArray.push_back(PhotoName);//读取照片信息加入到队列尾部
     }
 }
+
+void ReadDataFromTxt(std::string Filename, std::vector<double>& x, std::vector<double>& y) {
+    FILE* fp = fopen(Filename.data(), "r");
+    double tempx, tempy;
+    while (fscanf(fp,"%lf %lf", &tempx, &tempy) != EOF) {
+        x.push_back(tempx);
+        y.push_back(tempy);
+    }
+}

@@ -69,7 +69,11 @@ private:
                void* pRaw8Buffer = NULL;
                pRaw8Buffer = objImageDataPointer->ConvertToRaw8(GX_BIT_0_7);
                std::memcpy(CamUiPtr->CurImgMat.data, pRaw8Buffer, (objImageDataPointer->GetHeight())*(objImageDataPointer->GetWidth()));
-               //cv::flip(CamUiPtr->CurImgMat, CamUiPtr->CurImgMat, 0);//大恒的图像要进行翻转，但是此处似乎不需要翻转
+
+               //判定是否去除畸变
+               if(CamUiPtr->m_bUnDistort==true){
+
+               }
 
                //调用自定义绘图函数进行绘制实时采集图像
                CamUiPtr->ShowCurImgInLabel(CamUiPtr->LabelShowCurImg,CamUiPtr->CurImgMat);
@@ -215,7 +219,8 @@ private:
     //标定相机参数
     cv::Mat CameraIntrinsic;//相机内参
     cv::Mat DisCoeffs;//相机畸变系数
-    int CalibPhotoNums;
+    int CalibPhotoNums;//标定图片数量
+    bool m_bUnDistort;//根据是否已经有畸变参数判定是否需要去畸变
     //激光平面
     LaserPlane LPlane;
     bool m_bSetBaseLine;//是否将当前图设置为基准

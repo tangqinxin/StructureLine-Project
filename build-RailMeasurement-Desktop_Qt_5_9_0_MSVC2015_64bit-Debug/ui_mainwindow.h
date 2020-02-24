@@ -22,7 +22,6 @@
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 #include <qcustomplot.h>
-#include "qchartview.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -30,21 +29,23 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QLabel *label_ResRU_Plot;
-    QLabel *label_ResRD_Plot;
-    QLabel *label_ResDown_Plot;
     QLabel *label_RailWayFig;
     QLabel *label_LUArrowFig;
     QLabel *label_LDArrowFig;
     QLabel *label_RUArrowFig;
     QLabel *label_RDArrowFig;
     QLabel *label_DArrowFig;
-    QLabel *label_ResLD_Plot;
-    QCustomPlot *widget_customPlot;
-    QChartView *widget_Plot;
     QPushButton *pushButton_Measure;
     QPushButton *pushButton_ChangeToCamWin1;
     QCustomPlot *widget_LUArrowFig;
+    QPushButton *pushButton_ChangeToCamWin2;
+    QPushButton *pushButton_ChangeToCamWin3;
+    QPushButton *pushButton_ChangeToCamWin4;
+    QPushButton *pushButton_ChangeToCamWin5;
+    QCustomPlot *widget_LDArrowFig;
+    QCustomPlot *widget_DownArrowFig;
+    QCustomPlot *widget_RUArrowFig;
+    QCustomPlot *widget_RDArrowFig;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -58,21 +59,6 @@ public:
         MainWindow->setMaximumSize(QSize(1920, 1080));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        label_ResRU_Plot = new QLabel(centralWidget);
-        label_ResRU_Plot->setObjectName(QStringLiteral("label_ResRU_Plot"));
-        label_ResRU_Plot->setGeometry(QRect(830, 32, 250, 250));
-        label_ResRU_Plot->setMinimumSize(QSize(250, 250));
-        label_ResRU_Plot->setMaximumSize(QSize(250, 250));
-        label_ResRD_Plot = new QLabel(centralWidget);
-        label_ResRD_Plot->setObjectName(QStringLiteral("label_ResRD_Plot"));
-        label_ResRD_Plot->setGeometry(QRect(830, 289, 250, 250));
-        label_ResRD_Plot->setMinimumSize(QSize(250, 250));
-        label_ResRD_Plot->setMaximumSize(QSize(250, 250));
-        label_ResDown_Plot = new QLabel(centralWidget);
-        label_ResDown_Plot->setObjectName(QStringLiteral("label_ResDown_Plot"));
-        label_ResDown_Plot->setGeometry(QRect(440, 420, 250, 250));
-        label_ResDown_Plot->setMinimumSize(QSize(250, 250));
-        label_ResDown_Plot->setMaximumSize(QSize(250, 250));
         label_RailWayFig = new QLabel(centralWidget);
         label_RailWayFig->setObjectName(QStringLiteral("label_RailWayFig"));
         label_RailWayFig->setGeometry(QRect(367, 1, 400, 400));
@@ -105,42 +91,40 @@ public:
         label_DArrowFig->setGeometry(QRect(550, 400, 40, 30));
         label_DArrowFig->setPixmap(QPixmap(QString::fromUtf8("../image/\347\256\255\345\244\264\345\220\221\344\270\212.png")));
         label_DArrowFig->setScaledContents(true);
-        label_ResLD_Plot = new QLabel(centralWidget);
-        label_ResLD_Plot->setObjectName(QStringLiteral("label_ResLD_Plot"));
-        label_ResLD_Plot->setGeometry(QRect(61, 289, 250, 250));
-        label_ResLD_Plot->setMinimumSize(QSize(250, 250));
-        label_ResLD_Plot->setMaximumSize(QSize(250, 250));
-        widget_customPlot = new QCustomPlot(centralWidget);
-        widget_customPlot->setObjectName(QStringLiteral("widget_customPlot"));
-        widget_customPlot->setGeometry(QRect(940, 350, 361, 321));
-        widget_Plot = new QChartView(centralWidget);
-        widget_Plot->setObjectName(QStringLiteral("widget_Plot"));
-        widget_Plot->setGeometry(QRect(930, 10, 401, 321));
         pushButton_Measure = new QPushButton(centralWidget);
         pushButton_Measure->setObjectName(QStringLiteral("pushButton_Measure"));
-        pushButton_Measure->setGeometry(QRect(1560, 70, 93, 28));
+        pushButton_Measure->setGeometry(QRect(1300, 150, 200, 80));
         pushButton_ChangeToCamWin1 = new QPushButton(centralWidget);
         pushButton_ChangeToCamWin1->setObjectName(QStringLiteral("pushButton_ChangeToCamWin1"));
-        pushButton_ChangeToCamWin1->setGeometry(QRect(1560, 110, 93, 28));
+        pushButton_ChangeToCamWin1->setGeometry(QRect(1300, 240, 200, 80));
         widget_LUArrowFig = new QCustomPlot(centralWidget);
         widget_LUArrowFig->setObjectName(QStringLiteral("widget_LUArrowFig"));
-        widget_LUArrowFig->setGeometry(QRect(60, 30, 250, 250));
+        widget_LUArrowFig->setGeometry(QRect(30, 30, 300, 300));
+        pushButton_ChangeToCamWin2 = new QPushButton(centralWidget);
+        pushButton_ChangeToCamWin2->setObjectName(QStringLiteral("pushButton_ChangeToCamWin2"));
+        pushButton_ChangeToCamWin2->setGeometry(QRect(1300, 330, 200, 80));
+        pushButton_ChangeToCamWin3 = new QPushButton(centralWidget);
+        pushButton_ChangeToCamWin3->setObjectName(QStringLiteral("pushButton_ChangeToCamWin3"));
+        pushButton_ChangeToCamWin3->setGeometry(QRect(1300, 420, 200, 80));
+        pushButton_ChangeToCamWin4 = new QPushButton(centralWidget);
+        pushButton_ChangeToCamWin4->setObjectName(QStringLiteral("pushButton_ChangeToCamWin4"));
+        pushButton_ChangeToCamWin4->setGeometry(QRect(1300, 510, 200, 80));
+        pushButton_ChangeToCamWin5 = new QPushButton(centralWidget);
+        pushButton_ChangeToCamWin5->setObjectName(QStringLiteral("pushButton_ChangeToCamWin5"));
+        pushButton_ChangeToCamWin5->setGeometry(QRect(1300, 600, 200, 80));
+        widget_LDArrowFig = new QCustomPlot(centralWidget);
+        widget_LDArrowFig->setObjectName(QStringLiteral("widget_LDArrowFig"));
+        widget_LDArrowFig->setGeometry(QRect(30, 350, 300, 300));
+        widget_DownArrowFig = new QCustomPlot(centralWidget);
+        widget_DownArrowFig->setObjectName(QStringLiteral("widget_DownArrowFig"));
+        widget_DownArrowFig->setGeometry(QRect(420, 440, 300, 300));
+        widget_RUArrowFig = new QCustomPlot(centralWidget);
+        widget_RUArrowFig->setObjectName(QStringLiteral("widget_RUArrowFig"));
+        widget_RUArrowFig->setGeometry(QRect(830, 30, 300, 300));
+        widget_RDArrowFig = new QCustomPlot(centralWidget);
+        widget_RDArrowFig->setObjectName(QStringLiteral("widget_RDArrowFig"));
+        widget_RDArrowFig->setGeometry(QRect(830, 360, 300, 300));
         MainWindow->setCentralWidget(centralWidget);
-        label_ResRU_Plot->raise();
-        label_ResRD_Plot->raise();
-        label_ResDown_Plot->raise();
-        label_RailWayFig->raise();
-        label_ResLD_Plot->raise();
-        label_LUArrowFig->raise();
-        label_LDArrowFig->raise();
-        label_RUArrowFig->raise();
-        label_RDArrowFig->raise();
-        label_DArrowFig->raise();
-        widget_customPlot->raise();
-        widget_Plot->raise();
-        pushButton_Measure->raise();
-        pushButton_ChangeToCamWin1->raise();
-        widget_LUArrowFig->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1920, 26));
@@ -160,18 +144,18 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        label_ResRU_Plot->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
-        label_ResRD_Plot->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
-        label_ResDown_Plot->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
         label_RailWayFig->setText(QString());
         label_LUArrowFig->setText(QString());
         label_LDArrowFig->setText(QString());
         label_RUArrowFig->setText(QString());
         label_RDArrowFig->setText(QString());
         label_DArrowFig->setText(QString());
-        label_ResLD_Plot->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
         pushButton_Measure->setText(QApplication::translate("MainWindow", "\346\265\213\351\207\217\347\273\223\346\236\234", Q_NULLPTR));
         pushButton_ChangeToCamWin1->setText(QApplication::translate("MainWindow", "\345\210\207\346\215\242\345\210\260\347\233\270\346\234\2721", Q_NULLPTR));
+        pushButton_ChangeToCamWin2->setText(QApplication::translate("MainWindow", "\345\210\207\346\215\242\345\210\260\347\233\270\346\234\2722", Q_NULLPTR));
+        pushButton_ChangeToCamWin3->setText(QApplication::translate("MainWindow", "\345\210\207\346\215\242\345\210\260\347\233\270\346\234\2723", Q_NULLPTR));
+        pushButton_ChangeToCamWin4->setText(QApplication::translate("MainWindow", "\345\210\207\346\215\242\345\210\260\347\233\270\346\234\2724", Q_NULLPTR));
+        pushButton_ChangeToCamWin5->setText(QApplication::translate("MainWindow", "\345\210\207\346\215\242\345\210\260\347\233\270\346\234\2725", Q_NULLPTR));
     } // retranslateUi
 
 };
